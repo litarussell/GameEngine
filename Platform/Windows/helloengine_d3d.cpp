@@ -33,6 +33,7 @@ ID3D11PixelShader *g_pPS = nullptr;     // the pointer to the pixel shader
 ID3D11Buffer *g_pVBuffer = nullptr; // Vertex Buffer
 
 // vertex buffer structure
+// 顶点结构
 struct VERTEX {
   XMFLOAT3 Position;
   XMFLOAT4 Color;
@@ -46,6 +47,7 @@ template <class T> inline void SafeRelease(T **ppInterfaceToRelease) {
   }
 }
 
+// 创建画布
 void CreateRenderTarget() {
   HRESULT hr;
   ID3D11Texture2D *pBackBuffer;
@@ -61,6 +63,7 @@ void CreateRenderTarget() {
   g_pDevcon->OMSetRenderTargets(1, &g_pRTView, NULL);
 }
 
+// 设置视口
 void SetViewPort() {
   D3D11_VIEWPORT viewport;
   ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
@@ -74,6 +77,7 @@ void SetViewPort() {
 }
 
 // this is the function that loads and prepares the shaders
+// 初始化渲染管道
 void InitPipeline() {
   // load and compile the two shaders
   ID3DBlob *VS, *PS;
@@ -111,9 +115,10 @@ void InitPipeline() {
 void InitGraphics() {
   // create a triangle using the VERTEX struct
   VERTEX OurVertices[] = {
-      {XMFLOAT3(0.0f, 0.5f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f)},
-      {XMFLOAT3(0.45f, -0.5, 0.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f)},
-      {XMFLOAT3(-0.45f, -0.5f, 0.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f)}};
+    {XMFLOAT3(0.0f, 0.5f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f)},
+    {XMFLOAT3(0.45f, -0.5, 0.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f)},
+    {XMFLOAT3(-0.45f, -0.5f, 0.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f)}
+  };
 
   // create the vertex buffer
   D3D11_BUFFER_DESC bd;
