@@ -1,8 +1,17 @@
 #include "BaseApplication.hpp"
+#include <iostream>
 
-int My::BaseApplication::Initialize() {
-  m_bQuit = false;
-  return 0;
+using namespace My;
+
+bool My::BaseApplication::m_bQuit = false;
+
+My::BaseApplication::BaseApplication(GfxConfiguration& cfg) : m_Config(cfg) {}
+
+int My::BaseApplication::Initialize()
+{
+  std::cout << m_Config;
+
+	return 0;
 }
 
 void My::BaseApplication::Finalize() {}
